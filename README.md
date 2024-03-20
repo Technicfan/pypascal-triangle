@@ -1,1 +1,1 @@
-you need to install tabulate
+just a simple school task
