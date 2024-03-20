@@ -12,10 +12,8 @@ def get_triangle(toline):
     # init string variable
     triangle = ""
     for i in range(0, toline + 1):
-        # calculate spaces between ":" and line
-        spaces = " " + " " * (len(str(toline))-len(str(i)))
-        # get current line
-        line = str(i) + ":" + spaces
+        # get current line and calculate extra spaces between ": " and line
+        line = str(i) + ": " + " " * (len(str(toline))-len(str(i)))
         for i2 in range(0, i + 1):
             line += str(Pas(i, i2)) + "|"
         # add line to string
