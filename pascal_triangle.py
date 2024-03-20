@@ -8,24 +8,29 @@ def Pas(line, pos):
     else:
         return Pas(line-1, pos-1) + Pas(line-1, pos)
 
-def get_line(iline):
-    sline = ""
-    for i in range(0,iline+1):
-        sline += str(Pas(iline,i)) + "|"
-    return sline[:-1]
+def get_triangle(toline):
+    # init string variable
+    triangle = ""
+    for i in range(0, toline + 1):
+        # calculate space between ":" and line
+        space = " "
+        for i2 in range(0, len(str(toline))-len(str(i))):
+            space += " "
+        # get current line
+        line = str(i) + ":" + space
+        for i3 in range(0, i + 1):
+            line += str(Pas(i, i3)) + "|"
+        # add line to string
+        triangle += line[:-1] + "\n"
+    return triangle[:-1]
 
 def main(args):
-    if len(args) < 2:
-        print("Usage:\npas_dreieck.py <int number>\n number: to which line it should calculate")
-        exit(1)
-    elif int(args[1]):
-        length = len(args[1])
-        for i in range(0,int(args[1]) + 1):
-            space = " "
-            for i2 in range(0,length-len(str(i))):
-                space += " "
-            print(str(i) + ":" + space + get_line(i))
+    # only proceed if first arg is an integer,
+    # otherwise print usage information
+    if len(args) > 1 and args[1].isdigit():
+        print(get_triangle(int(args[1])))
     else:
+        print("Usage:\npas_dreieck.py <int number>\n number: to which line it should calculate")
         exit(1)
 
 main(sys.argv)
